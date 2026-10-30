@@ -1,0 +1,54 @@
+services:
+  card-classifier-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yugioh-card-classifier-cpu
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      - MODEL_NAME=${MODEL_NAME:-roberta-base}
+      - MODEL_PATH=/app/models/card-genre-classifier
+      - MAX_LENGTH=${MAX_LENGTH:-512}
+      - BATCH_SIZE=${BATCH_SIZE:-16}
+      - THRESHOLD=${THRESHOLD:-0.5}
+      - CUDA_AVAILABLE=false
+      - USE_MIXED_PRECISION=false
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./models:/app/models:ro
+      - ./logs:/app/logs
+    restart: unless-stopped
+    profiles:
+      - cpu
+      - default
+
+  card-classifier-gpu:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yugioh-card-classifier-gpu
+    ports:
+      - "${PORT:-8000}:8000"
+    environment:
+      - MODEL_NAME=${MODEL_NAME:-roberta-base}
+      - MODEL_PATH=/app/models/card-genre-classifier
+      - MAX_LENGTH=${MAX_LENGTH:-512}
+      - BATCH_SIZE=${BATCH_SIZE:-32}
+      - THRESHOLD=${THRESHOLD:-0.5}
+      - CUDA_AVAILABLE=true
+      - USE_MIXED_PRECISION=true
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      - ./models:/app/models:ro
+      - ./logs:/app/logs
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    profiles:
+      - gpu
