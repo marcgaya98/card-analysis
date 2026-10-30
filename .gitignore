@@ -1,0 +1,37 @@
+# Virtual environments
+venv/
+.venv/
+ENV/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Large model weights, vocabularies, and checkpoints (keep lightweight config/mapping JSONs tracked)
+models/**/*.safetensors
+models/**/*.bin
+models/**/*.pt
+models/**/*.pth
+models/**/tokenizer.json
+models/**/vocab.json
+models/**/vocab.txt
+models/**/merges.txt
+models/**/checkpoint-*/
+
+# OS / IDE files
+.DS_Store
+.vscode/
+.idea/
