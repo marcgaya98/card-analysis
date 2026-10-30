@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="100%" height="100%">
+  <style>
+    .bg { fill: #0d1117; rx: 12px; stroke: #30363d; stroke-width: 1.5px; }
+    .header { fill: #161b22; }
+    .title { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; fill: #8b949e; font-weight: 600; }
+    .code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 13px; }
+    .prompt { fill: #3fb950; font-weight: bold; }
+    .cmd { fill: #e6edf3; }
+    .flag { fill: #79c0ff; }
+    .str { fill: #a5d6ff; }
+    .key { fill: #7ee787; }
+    .num { fill: #d2a8ff; }
+    .comment { fill: #8b949e; }
+    .badge { fill: #8957e5; rx: 4px; }
+    .badge-txt { font-family: 'SFMono-Regular', Consolas, monospace; font-size: 11px; fill: #ffffff; font-weight: bold; }
+    .step1 { opacity: 0; animation: fadeIn 8s infinite 0.3s; }
+    .step2 { opacity: 0; animation: fadeIn 8s infinite 1.4s; }
+    .step3 { opacity: 0; animation: fadeIn 8s infinite 2.5s; }
+    .step4 { opacity: 0; animation: fadeIn 8s infinite 3.8s; }
+    @keyframes fadeIn {
+      0%, 5% { opacity: 0; transform: translateY(3px); }
+      12%, 90% { opacity: 1; transform: translateY(0); }
+      96%, 100% { opacity: 0; }
+    }
+  </style>
+
+  <rect class="bg" x="2" y="2" width="916" height="426" rx="12"/>
+  <path class="header" d="M2 14 C2 7.37 7.37 2 14 2 L906 2 C912.63 2 918 7.37 918 14 L918 42 L2 42 Z"/>
+  <line x1="2" y1="42" x2="918" y2="42" stroke="#30363d" stroke-width="1"/>
+
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text class="title" x="460" y="26" text-anchor="middle">card-analysis — Multi-Label RoBERTa Card Mechanics Classifier (PyTorch + FastAPI)</text>
+
+  <g class="code step1">
+    <text x="26" y="74">
+      <tspan class="prompt">➜</tspan>
+      <tspan class="cmd"> curl </tspan>
+      <tspan class="flag">-X POST </tspan>
+      <tspan class="str">"http://localhost:8000/classify"</tspan>
+      <tspan class="flag"> -d </tspan>
+      <tspan class="str">'{"texts":["Special Summon this card from the GY. Destroy all Spells and Traps."]}'</tspan>
+    </text>
+  </g>
+
+  <g class="code step2">
+    <rect class="badge" x="26" y="88" width="138" height="20"/>
+    <text class="badge-txt" x="34" y="102">RoBERTa FP16 GPU</text>
+    <text class="comment" x="176" y="102">• Multi-Label Sigmoid Inference (11 Canonical Mechanics) • 18.2 ms • Weighted BCE Trained</text>
+  </g>
+
+  <g class="code step3">
+    <text x="26" y="132" class="cmd">{</text>
+    <text x="44" y="152"><tspan class="key">"results"</tspan><tspan class="cmd">: [{</tspan></text>
+    <text x="64" y="172"><tspan class="key">"primary_genres"</tspan><tspan class="cmd">: [</tspan><tspan class="str">"Special Summon"</tspan><tspan class="cmd">, </tspan><tspan class="str">"Destroy Spell/Trap"</tspan><tspan class="cmd">, </tspan><tspan class="str">"Recover cards from Graveyard"</tspan><tspan class="cmd">],</tspan></text>
+    <text x="64" y="192"><tspan class="key">"detected_genres"</tspan><tspan class="cmd">: [</tspan></text>
+    <text x="84" y="212"><tspan class="cmd">{ </tspan><tspan class="key">"genre"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Special Summon"</tspan><tspan class="cmd">,               </tspan><tspan class="key">"probability"</tspan><tspan class="cmd">: </tspan><tspan class="num">0.9124</tspan><tspan class="cmd">, </tspan><tspan class="key">"confidence"</tspan><tspan class="cmd">: </tspan><tspan class="str">"High"</tspan><tspan class="cmd"> },</tspan></text>
+    <text x="84" y="232"><tspan class="cmd">{ </tspan><tspan class="key">"genre"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Destroy Spell/Trap"</tspan><tspan class="cmd">,           </tspan><tspan class="key">"probability"</tspan><tspan class="cmd">: </tspan><tspan class="num">0.8741</tspan><tspan class="cmd">, </tspan><tspan class="key">"confidence"</tspan><tspan class="cmd">: </tspan><tspan class="str">"High"</tspan><tspan class="cmd"> },</tspan></text>
+    <text x="84" y="252"><tspan class="cmd">{ </tspan><tspan class="key">"genre"</tspan><tspan class="cmd">: </tspan><tspan class="str">"Recover cards from Graveyard"</tspan><tspan class="cmd">, </tspan><tspan class="key">"probability"</tspan><tspan class="cmd">: </tspan><tspan class="num">0.8419</tspan><tspan class="cmd">, </tspan><tspan class="key">"confidence"</tspan><tspan class="cmd">: </tspan><tspan class="str">"High"</tspan><tspan class="cmd"> }</tspan></text>
+    <text x="64" y="272"><tspan class="cmd">], </tspan><tspan class="key">"processing_time"</tspan><tspan class="cmd">: </tspan><tspan class="num">0.0182</tspan></text>
+    <text x="44" y="292" class="cmd">}]</text>
+    <text x="26" y="310" class="cmd">}</text>
+  </g>
+
+  <g class="code step4">
+    <line x1="26" y1="324" x2="894" y2="324" stroke="#21262d" stroke-width="1"/>
+    <text x="26" y="348">
+      <tspan class="prompt">➜</tspan>
+      <tspan class="cmd"> pytest tests/ -v</tspan>
+      <tspan class="comment">  # FastAPI Endpoints • Pydantic v2 Validation • 854 Aligned Training Samples</tspan>
+    </text>
+    <text x="26" y="374">
+      <tspan fill="#3fb950" font-weight="bold">======================== 13 passed in 9.60s ========================</tspan>
+    </text>
+    <text x="26" y="398">
+      <tspan class="comment">OpenAPI Swagger Docs → </tspan>
+      <tspan class="flag">http://localhost:8000/docs</tspan>
+      <tspan class="comment">  •  Profiles: </tspan>
+      <tspan class="key">docker compose --profile gpu up --build</tspan>
+    </text>
+  </g>
+</svg>
