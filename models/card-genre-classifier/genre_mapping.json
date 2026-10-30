@@ -1,0 +1,16 @@
+{
+  "classes": [
+    "Remove card from play",
+    "Destroy Spell/Trap",
+    "Destroy monster",
+    "Attribute",
+    "Type",
+    "Search Deck",
+    "Recover cards from Graveyard",
+    "Increase/Decrease ATK/DEF",
+    "Reduce Life Points",
+    "Special Summon",
+    "Cannot perform Normal Summon"
+  ],
+  "num_classes": 11
+}

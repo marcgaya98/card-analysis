@@ -1,0 +1,28 @@
+{
+  "model_name": "roberta-base",
+  "num_labels": 11,
+  "genres": [
+    "Remove card from play",
+    "Destroy Spell/Trap",
+    "Destroy monster",
+    "Attribute",
+    "Type",
+    "Search Deck",
+    "Recover cards from Graveyard",
+    "Increase/Decrease ATK/DEF",
+    "Reduce Life Points",
+    "Special Summon",
+    "Cannot perform Normal Summon"
+  ],
+  "training_time_minutes": 2.8675016442934673,
+  "final_eval_loss": 0.6773430109024048,
+  "train_samples": 683,
+  "val_samples": 85,
+  "test_samples": 86,
+  "config": {
+    "learning_rate": 2e-05,
+    "batch_size": 32,
+    "num_epochs": 3,
+    "max_length": 512
+  }
+}

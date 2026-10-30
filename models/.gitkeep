@@ -1,0 +1,2 @@
+# Keep models directory but ignore trained models
+# Place trained models in subdirectories
