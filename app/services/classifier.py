@@ -101,7 +101,9 @@ class CardGenreClassifier:
         model_path = Path(settings.model_path)
         self.genre_labels = self._load_genre_mapping(model_path)
 
-        if model_path.exists() and (model_path / "config.json").exists():
+        if (model_path / "config.json").exists() and (
+            model_path / "model.safetensors"
+        ).exists():
             self._load_pretrained_checkpoint(str(model_path), ignore_mismatched=False)
         else:
             self._load_pretrained_checkpoint(settings.model_name, ignore_mismatched=True)
